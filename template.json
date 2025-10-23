@@ -2,12 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "sites_sch2_group2_admin_name": {
-            "defaultValue": "sch2-group2-admin",
+        "sites_sch2_gr2_name": {
+            "defaultValue": "sch2-gr2",
             "type": "String"
         },
-        "serverfarms_ASP_rgmabedisch_b0fb_name": {
-            "defaultValue": "ASP-rgmabedisch-b0fb",
+        "serverfarms_ASP_rgmabedisch_9fd9_name": {
+            "defaultValue": "ASP-rgmabedisch-9fd9",
             "type": "String"
         }
     },
@@ -16,7 +16,7 @@
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2024-11-01",
-            "name": "[parameters('serverfarms_ASP_rgmabedisch_b0fb_name')]",
+            "name": "[parameters('serverfarms_ASP_rgmabedisch_9fd9_name')]",
             "location": "Canada Central",
             "sku": {
                 "name": "B1",
@@ -43,27 +43,27 @@
         {
             "type": "Microsoft.Web/sites",
             "apiVersion": "2024-11-01",
-            "name": "[parameters('sites_sch2_group2_admin_name')]",
+            "name": "[parameters('sites_sch2_gr2_name')]",
             "location": "Canada Central",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ASP_rgmabedisch_b0fb_name'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ASP_rgmabedisch_9fd9_name'))]"
             ],
             "kind": "app",
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
                     {
-                        "name": "[concat(parameters('sites_sch2_group2_admin_name'), '.azurewebsites.net')]",
+                        "name": "[concat(parameters('sites_sch2_gr2_name'), '.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "hostType": "Standard"
                     },
                     {
-                        "name": "[concat(parameters('sites_sch2_group2_admin_name'), '.scm.azurewebsites.net')]",
+                        "name": "[concat(parameters('sites_sch2_gr2_name'), '.scm.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "hostType": "Repository"
                     }
                 ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ASP_rgmabedisch_b0fb_name'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ASP_rgmabedisch_9fd9_name'))]",
                 "reserved": false,
                 "isXenon": false,
                 "hyperV": false,
@@ -104,10 +104,10 @@
         {
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2024-11-01",
-            "name": "[concat(parameters('sites_sch2_group2_admin_name'), '/ftp')]",
+            "name": "[concat(parameters('sites_sch2_gr2_name'), '/ftp')]",
             "location": "Canada Central",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_group2_admin_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_gr2_name'))]"
             ],
             "properties": {
                 "allow": false
@@ -116,22 +116,22 @@
         {
             "type": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
             "apiVersion": "2024-11-01",
-            "name": "[concat(parameters('sites_sch2_group2_admin_name'), '/scm')]",
+            "name": "[concat(parameters('sites_sch2_gr2_name'), '/scm')]",
             "location": "Canada Central",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_group2_admin_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_gr2_name'))]"
             ],
             "properties": {
-                "allow": false
+                "allow": true
             }
         },
         {
             "type": "Microsoft.Web/sites/config",
             "apiVersion": "2024-11-01",
-            "name": "[concat(parameters('sites_sch2_group2_admin_name'), '/web')]",
+            "name": "[concat(parameters('sites_sch2_gr2_name'), '/web')]",
             "location": "Canada Central",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_group2_admin_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_gr2_name'))]"
             ],
             "properties": {
                 "numberOfWorkers": 1,
@@ -153,8 +153,8 @@
                 "acrUseManagedIdentityCreds": false,
                 "logsDirectorySizeLimit": 35,
                 "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "REDACTED",
-                "scmType": "None",
+                "publishingUsername": "$sch2-gr2",
+                "scmType": "ExternalGit",
                 "use32BitWorkerProcess": true,
                 "webSocketsEnabled": false,
                 "alwaysOn": false,
@@ -207,15 +207,53 @@
             }
         },
         {
-            "type": "Microsoft.Web/sites/hostNameBindings",
+            "type": "Microsoft.Web/sites/deployments",
             "apiVersion": "2024-11-01",
-            "name": "[concat(parameters('sites_sch2_group2_admin_name'), '/', parameters('sites_sch2_group2_admin_name'), '.azurewebsites.net')]",
+            "name": "[concat(parameters('sites_sch2_gr2_name'), '/089f3560ceb6c35730b474b6cb0406e87423980f')]",
             "location": "Canada Central",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_group2_admin_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_gr2_name'))]"
             ],
             "properties": {
-                "siteName": "sch2-group2-admin",
+                "status": 4,
+                "author_email": "it.abedi@gmail.com",
+                "author": "Masoud Abedi",
+                "deployer": "GitHub",
+                "message": "Revamp index.html for Admin Panel login\n\nUpdated HTML structure for an Admin Panel login page, including Tailwind CSS integration and a fade-in animation.",
+                "start_time": "2025-10-23T07:08:36.4237933Z",
+                "end_time": "2025-10-23T07:08:38.1012392Z",
+                "active": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/deployments",
+            "apiVersion": "2024-11-01",
+            "name": "[concat(parameters('sites_sch2_gr2_name'), '/6305cfe9b41f3879aca6fe4e05dfcca1e8353304')]",
+            "location": "Canada Central",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_gr2_name'))]"
+            ],
+            "properties": {
+                "status": 4,
+                "author_email": "it.abedi@gmail.com",
+                "author": "Masoud Abedi",
+                "deployer": "GitHub",
+                "message": "Create index.html",
+                "start_time": "2025-10-23T06:54:10.6618769Z",
+                "end_time": "2025-10-23T06:54:13.9274784Z",
+                "active": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "apiVersion": "2024-11-01",
+            "name": "[concat(parameters('sites_sch2_gr2_name'), '/', parameters('sites_sch2_gr2_name'), '.azurewebsites.net')]",
+            "location": "Canada Central",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_sch2_gr2_name'))]"
+            ],
+            "properties": {
+                "siteName": "sch2-gr2",
                 "hostNameType": "Verified"
             }
         }
