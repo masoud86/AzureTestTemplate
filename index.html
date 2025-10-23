@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample API Documentation</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* Add soft hover glow to sections */
+    section:hover {
+      transition: box-shadow 0.3s ease-in-out;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+    }
+
+    /* Code block styling */
+    pre {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans">
+  <!-- Top Navbar -->
+  <header class="bg-gray-900 border-b border-gray-800 px-6 py-4 flex items-center justify-between">
+    <h1 class="text-xl font-bold text-blue-400">MyApp API Docs</h1>
+    <nav>
+      <a href="#" class="text-gray-400 hover:text-white mx-3">Overview</a>
+      <a href="#" class="text-gray-400 hover:text-white mx-3">Authentication</a>
+      <a href="#" class="text-gray-400 hover:text-white mx-3">Endpoints</a>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto py-10 px-6">
+    <!-- Overview -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-3 text-blue-400">Overview</h2>
+      <p class="text-gray-300 leading-relaxed">
+        This REST API allows developers to interact with the <strong>MyApp</strong> platform.  
+        You can manage users, view statistics, and perform CRUD operations on your data resources.
+      </p>
+      <div class="mt-4 bg-gray-900 border border-gray-800 rounded-lg p-4 text-sm">
+        <code class="text-blue-400">Base URL:</code>
+        <pre class="mt-1 text-gray-200">https://api.myappdemo.com/v1</pre>
+      </div>
+    </section>
+
+    <!-- Authentication -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-3 text-blue-400">Authentication</h2>
+      <p class="text-gray-300 mb-3">
+        All endpoints require a valid <code class="bg-gray-800 px-1 rounded text-blue-400">Bearer Token</code> in the request header:
+      </p>
+      <div class="bg-gray-900 border border-gray-800 rounded-lg p-4 text-sm">
+        <pre class="text-gray-300">Authorization: Bearer &lt;your_token_here&gt;</pre>
+      </div>
+    </section>
+
+    <!-- Sample Endpoint -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-3 text-blue-400">Endpoints</h2>
+
+      <!-- GET -->
+      <div class="mb-8 bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-2 flex justify-between items-center">
+          <span class="bg-green-600 text-xs font-semibold px-2 py-1 rounded">GET</span>
+          <code class="text-gray-200 ml-2 flex-1">/users</code>
+          <span class="text-gray-500 text-sm">List all users</span>
+        </div>
+        <div class="p-4 text-sm">
+          <p class="text-gray-300 mb-2">Retrieves all users from the system.</p>
+          <pre class="bg-gray-950 border border-gray-800 p-3 rounded text-gray-300 overflow-x-auto">
+curl -X GET https://api.myappdemo.com/v1/users \
+  -H "Authorization: Bearer &lt;your_token&gt;"
+          </pre>
+          <p class="mt-3 text-gray-400">Response:</p>
+          <pre class="bg-gray-950 border border-gray-800 p-3 rounded text-gray-300 overflow-x-auto">
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+]
+          </pre>
+        </div>
+      </div>
+
+      <!-- POST -->
+      <div class="mb-8 bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-2 flex justify-between items-center">
+          <span class="bg-blue-600 text-xs font-semibold px-2 py-1 rounded">POST</span>
+          <code class="text-gray-200 ml-2 flex-1">/users</code>
+          <span class="text-gray-500 text-sm">Create new user</span>
+        </div>
+        <div class="p-4 text-sm">
+          <p class="text-gray-300 mb-2">Creates a new user with the provided data.</p>
+          <pre class="bg-gray-950 border border-gray-800 p-3 rounded text-gray-300 overflow-x-auto">
+curl -X POST https://api.myappdemo.com/v1/users \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer &lt;your_token&gt;" \
+  -d '{"name": "Jane Doe", "email": "jane@example.com"}'
+          </pre>
+          <p class="mt-3 text-gray-400">Response:</p>
+          <pre class="bg-gray-950 border border-gray-800 p-3 rounded text-gray-300 overflow-x-auto">
+{
+  "id": 2,
+  "name": "Jane Doe",
+  "email": "jane@example.com"
+}
+          </pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center text-gray-500 text-sm py-8 border-t border-gray-800">
+    &copy; 2025 MyApp Demo API — All rights reserved.
+  </footer>
+</body>
+</html>
