@@ -3,70 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel Login</title>
+  <title>Global Retail Corp</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style type="text/tailwindcss">
-    @keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    }
+	@keyframes fadeIn {
+	  from { opacity: 0; transform: translateY(8px); }
+	  to { opacity: 1; transform: translateY(0); }
+	}
 
-    body {
-    animation: fadeInUp 0.8s ease-out;
-    }
+	body {
+	  animation: fadeIn 0.7s ease-out;
+	  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	}
 
-    /* Optional: glow effect for card hover */
-    div.w-full:hover {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-    transition: box-shadow 0.3s ease-in-out;
-    }
+	/* Slight zoom on image hover for a premium feel */
+	.group img, .bg-gray-100 img {
+	  transition: transform 0.35s ease, filter 0.25s ease;
+	}
+
+	.group:hover img, .bg-gray-100:hover img {
+	  transform: scale(1.04);
+	}
+
+	/* Make hero image slightly darker for text contrast (when not using the attribute in HTML) */
+	.hero-dim {
+	  filter: brightness(0.85);
+	}
+
+	/* keep images from shifting layout by forcing aspect ratio */
+	img {
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  max-height: 100%;
+	  object-position: center;
+	}
+
   </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen flex items-center justify-center">
-  <div class="w-full max-w-md px-8 py-10 bg-gray-800 rounded-2xl shadow-2xl border border-gray-700">
-    <div class="text-center mb-8">
-      <div class="flex justify-center mb-3">
-        <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl font-bold">
-          A
+
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-blue-600">Global Retail Corp</h1>
+      <nav class="hidden md:flex items-center space-x-6">
+        <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Home</a>
+        <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Shop</a>
+        <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Deals</a>
+        <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Contact</a>
+      </nav>
+
+      <!-- mobile menu placeholder -->
+      <div class="md:hidden text-gray-600">☰</div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative">
+    <!-- Unsplash query-based image for "summer clothing" -->
+    <img
+      src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1600&q=80"
+      alt="Summer clothing collection hero"
+      class="w-full h-[60vh] object-cover brightness-[0.85]">
+    <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+      <div class="text-center text-white px-4">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-3">Summer Collection 2025</h2>
+        <p class="text-lg md:text-xl mb-6 max-w-xl mx-auto">Fresh styles. Clean lines. Limited-time offers from DemoStore.</p>
+        <a href="#" class="px-6 py-3 bg-blue-600 rounded-lg text-white font-semibold hover:bg-blue-700 transition">
+          Shop Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="max-w-7xl mx-auto px-6 py-14">
+    <h3 class="text-2xl font-bold mb-8">Shop by Category</h3>
+
+    <div class="grid sm:grid-cols-3 gap-8">
+      <!-- Men's Fashion -->
+      <div class="group rounded-xl overflow-hidden shadow hover:shadow-lg transition">
+        <img
+          src="https://images.unsplash.com/photo-1620274549078-11bf5291cb9a?w=800&auto=format"
+          alt="Men's fashion"
+          class="w-full h-60 object-cover group-hover:scale-105 transition-transform">
+        <div class="p-4">
+          <h4 class="text-lg font-semibold">Men’s Fashion</h4>
+          <p class="text-sm text-gray-500 mt-1">Contemporary looks for everyday wear.</p>
         </div>
       </div>
-      <h1 class="text-white text-2xl font-semibold">Admin Panel</h1>
-      <p class="text-gray-400 text-sm mt-1">Sign in to access your dashboard</p>
+
+      <!-- Women's Fashion -->
+      <div class="group rounded-xl overflow-hidden shadow hover:shadow-lg transition">
+        <img
+          src="https://images.unsplash.com/photo-1735424080701-d00f5fda5aa6?w=800&auto=format"
+          alt="Women's fashion"
+          class="w-full h-60 object-cover group-hover:scale-105 transition-transform">
+        <div class="p-4">
+          <h4 class="text-lg font-semibold">Women’s Fashion</h4>
+          <p class="text-sm text-gray-500 mt-1">Stylish pieces for every occasion.</p>
+        </div>
+      </div>
+
+      <!-- Accessories -->
+      <div class="group rounded-xl overflow-hidden shadow hover:shadow-lg transition">
+        <img
+          src="https://images.unsplash.com/photo-1760624294514-3548bee70d26?w=800&auto=format"
+          alt="Accessories"
+          class="w-full h-60 object-cover group-hover:scale-105 transition-transform">
+        <div class="p-4">
+          <h4 class="text-lg font-semibold">Accessories</h4>
+          <p class="text-sm text-gray-500 mt-1">Bags, watches, and finishing touches.</p>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <form>
-      <div class="mb-5">
-        <label for="email" class="block text-gray-300 text-sm mb-2">Email</label>
-        <input id="email" type="email" placeholder="admin@example.com"
-               class="w-full px-4 py-2 bg-gray-700 text-gray-100 rounded-lg border border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none transition">
+  <!-- Featured Products -->
+  <section class="bg-white py-14">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between mb-8">
+        <h3 class="text-2xl font-bold">Featured Products</h3>
+        <a href="#" class="text-blue-600 hover:underline text-sm">See all</a>
       </div>
-      <div class="mb-6">
-        <label for="password" class="block text-gray-300 text-sm mb-2">Password</label>
-        <input id="password" type="password" placeholder="••••••••"
-               class="w-full px-4 py-2 bg-gray-700 text-gray-100 rounded-lg border border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 outline-none transition">
-      </div>
-      <div class="flex items-center justify-between mb-6">
-        <label class="flex items-center text-gray-400 text-sm">
-          <input type="checkbox" class="mr-2 rounded border-gray-600 bg-gray-700 text-blue-600 focus:ring-blue-500">
-          Remember me
-        </label>
-        <a href="#" class="text-blue-500 hover:text-blue-400 text-sm transition">Forgot password?</a>
-      </div>
-      <button type="button"
-              class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-lg transition transform hover:-translate-y-0.5">
-        Sign In
-      </button>
-    </form>
 
-    <p class="text-center text-gray-500 text-sm mt-8">
-      &copy; 2025 Your Company. All rights reserved.
-    </p>
-  </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+        <!-- Product — Modern Sneakers -->
+        <div class="bg-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition">
+          <img
+            src="https://images.unsplash.com/photo-1579381250246-fe0a97f11466?w=800&auto=format"
+            alt="Modern Sneakers"
+            class="w-full h-52 object-cover">
+          <div class="p-4">
+            <h4 class="font-semibold">Modern Sneakers</h4>
+            <p class="text-gray-600 text-sm">$89.99</p>
+          </div>
+        </div>
+
+        <!-- Product — Essential Hoodie -->
+        <div class="bg-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition">
+          <img
+            src="https://images.unsplash.com/photo-1628875986390-15280f9865e5?w=800&auto=format"
+            alt="Essential Hoodie"
+            class="w-full h-52 object-cover">
+          <div class="p-4">
+            <h4 class="font-semibold">Essential Hoodie</h4>
+            <p class="text-gray-600 text-sm">$59.99</p>
+          </div>
+        </div>
+
+        <!-- Product — Slim-Fit Jeans -->
+        <div class="bg-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition">
+          <img
+            src="https://images.unsplash.com/photo-1714143164139-8fdc14bf3054?w=800&auto=format"
+            alt="Slim-Fit Jeans"
+            class="w-full h-52 object-cover">
+          <div class="p-4">
+            <h4 class="font-semibold">Slim-Fit Jeans</h4>
+            <p class="text-gray-600 text-sm">$49.99</p>
+          </div>
+        </div>
+
+        <!-- Product — Smart Watch -->
+        <div class="bg-gray-100 rounded-xl overflow-hidden hover:shadow-lg transition">
+          <img
+            src="https://images.unsplash.com/photo-1641457474717-26e699f45414?w=800&auto=format"
+            alt="Smart Watch"
+            class="w-full h-52 object-cover">
+          <div class="p-4">
+            <h4 class="font-semibold">Smart Watch</h4>
+            <p class="text-gray-600 text-sm">$129.99</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-10 mt-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-wrap justify-between">
+
+        <div class="mb-6">
+          <h5 class="font-semibold text-white mb-3">DemoStore</h5>
+          <p class="text-gray-400 text-sm max-w-xs">A professional demo retail homepage for infrastructure demos and UI showcases.</p>
+        </div>
+
+        <div class="mb-6">
+          <h5 class="font-semibold text-white mb-3">Quick Links</h5>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Home</a></li>
+            <li><a href="#" class="hover:text-white">Shop</a></li>
+            <li><a href="#" class="hover:text-white">About</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="mb-6">
+          <h5 class="font-semibold text-white mb-3">Contact</h5>
+          <p class="text-gray-400 text-sm">support@demostore.com</p>
+          <p class="text-gray-400 text-sm">+1 (555) 123-4567</p>
+        </div>
+      </div>
+
+      <div class="text-center text-gray-500 text-sm mt-10">
+        © 2025 DemoStore — All rights reserved.
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
+
